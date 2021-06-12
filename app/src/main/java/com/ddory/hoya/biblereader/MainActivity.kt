@@ -3,7 +3,7 @@ package com.ddory.hoya.biblereader
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ddory.hoya.biblereader.ui.main.MainFragment
-import com.ddory.hoya.biblereader.ui.signin.SigninFragment
+import com.ddory.hoya.biblereader.ui.signin.SignInFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         if (auth.currentUser == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, SigninFragment.newInstance())
+                .replace(R.id.container, SignInFragment.newInstance())
                 .commitNow()
         } else {
             supportFragmentManager.beginTransaction()

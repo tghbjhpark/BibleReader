@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ddory.hoya.biblereader.R
 
-class SigninFragment :Fragment(){
+class SignInFragment :Fragment(){
 
     companion object {
-        fun newInstance() = SigninFragment()
+        fun newInstance() = SignInFragment()
     }
 
-    private lateinit var viewModel: SigninViewModel
+    private lateinit var viewModel: SignInViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class SigninFragment :Fragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SigninViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
         // TODO: Use the ViewModel
     }
 }
