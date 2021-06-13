@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.ddory.hoya.biblereader.R
+import com.ddory.hoya.biblereader.databinding.SigninFragmentBinding
 
 class SignInFragment :Fragment(){
 
@@ -14,18 +14,20 @@ class SignInFragment :Fragment(){
         fun newInstance() = SignInFragment()
     }
 
-    private lateinit var viewModel: SignInViewModel
+    lateinit var binding: SigninFragmentBinding
+
+    private val signInViewModel: SignInViewModel by lazy {
+        ViewModelProvider(this).get(SignInViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.signin_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding = SigninFragmentBinding.inflate(inflater, container, false).apply {
+            viewModel = signInViewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+        return binding.root
     }
 }
