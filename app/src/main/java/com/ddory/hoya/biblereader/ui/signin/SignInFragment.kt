@@ -28,6 +28,7 @@ class SignInFragment :Fragment(){
             viewModel = signInViewModel
             lifecycleOwner = viewLifecycleOwner
         }
+        lifecycle.addObserver(signInViewModel)
         return binding.root
     }
 }
