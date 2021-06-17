@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.ddory.hoya.biblereader.ViewModelFactory
 import com.ddory.hoya.biblereader.databinding.SigninFragmentBinding
 
 class SignInFragment :Fragment(){
@@ -16,8 +18,8 @@ class SignInFragment :Fragment(){
 
     lateinit var binding: SigninFragmentBinding
 
-    private val signInViewModel: SignInViewModel by lazy {
-        ViewModelProvider(this).get(SignInViewModel::class.java)
+    private val signInViewModel by viewModels<SignInViewModel> {
+        ViewModelFactory(requireContext(), this)
     }
 
     override fun onCreateView(
