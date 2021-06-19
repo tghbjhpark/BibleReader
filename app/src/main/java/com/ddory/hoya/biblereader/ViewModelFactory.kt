@@ -7,6 +7,7 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
+import com.ddory.hoya.biblereader.ui.friends.FriendsViewModel
 import com.ddory.hoya.biblereader.ui.home.HomeViewModel
 import com.ddory.hoya.biblereader.ui.signin.SignInViewModel
 import com.ddory.hoya.biblereader.ui.splash.SplashViewModel
@@ -29,6 +30,8 @@ class ViewModelFactory constructor(
                 SplashViewModel()
             isAssignableFrom(HomeViewModel::class.java) ->
                 HomeViewModel()
+            isAssignableFrom(FriendsViewModel::class.java) ->
+                FriendsViewModel()
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
