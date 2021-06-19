@@ -8,6 +8,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.ddory.hoya.biblereader.ui.signin.SignInViewModel
+import com.ddory.hoya.biblereader.ui.splash.SplashViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
@@ -23,6 +24,8 @@ class ViewModelFactory constructor(
         when {
             isAssignableFrom(SignInViewModel::class.java) ->
                 SignInViewModel(fragment)
+            isAssignableFrom(SplashViewModel::class.java) ->
+                SplashViewModel()
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
