@@ -19,7 +19,7 @@ class SignInFragment :Fragment(){
     lateinit var binding: SigninFragmentBinding
 
     private val signInViewModel by viewModels<SignInViewModel> {
-        ViewModelFactory(requireContext(), this)
+        ViewModelFactory(this, this)
     }
 
     override fun onCreateView(
@@ -29,6 +29,9 @@ class SignInFragment :Fragment(){
         binding = SigninFragmentBinding.inflate(inflater, container, false).apply {
             viewModel = signInViewModel
             lifecycleOwner = viewLifecycleOwner
+        }
+        binding.signInButton.setOnClickListener {
+            signInViewModel.signIn()
         }
         lifecycle.addObserver(signInViewModel)
         return binding.root

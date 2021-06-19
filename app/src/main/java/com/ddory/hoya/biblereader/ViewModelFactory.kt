@@ -2,6 +2,7 @@ package com.ddory.hoya.biblereader
 
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -10,7 +11,7 @@ import com.ddory.hoya.biblereader.ui.signin.SignInViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
-    private val context: Context,
+    private val fragment: Fragment,
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
@@ -21,7 +22,7 @@ class ViewModelFactory constructor(
     ): T = with(modelClass) {
         when {
             isAssignableFrom(SignInViewModel::class.java) ->
-                SignInViewModel(context)
+                SignInViewModel(fragment)
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
