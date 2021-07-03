@@ -13,6 +13,7 @@ import com.ddory.hoya.biblereader.databinding.HomeFragmentBinding
 import com.ddory.hoya.biblereader.ui.ActivityViewModel
 
 class HomeFragment : Fragment() {
+
     lateinit var binding: HomeFragmentBinding
 
     private val homeViewModel by viewModels<HomeViewModel> {
@@ -26,6 +27,7 @@ class HomeFragment : Fragment() {
             viewModel = homeViewModel
             lifecycleOwner = viewLifecycleOwner
         }
+        lifecycle.addObserver(homeViewModel)
         activityViewModel.navigationEvent.observe(viewLifecycleOwner) {
             when (it) {
                 ActivityViewModel.NavEvent.FRIENDS ->
