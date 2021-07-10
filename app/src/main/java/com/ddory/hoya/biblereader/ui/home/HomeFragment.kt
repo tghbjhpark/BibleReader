@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.ddory.hoya.biblereader.ViewModelFactory
 import com.ddory.hoya.biblereader.databinding.HomeFragmentBinding
 import com.ddory.hoya.biblereader.ui.ActivityViewModel
+import com.squareup.picasso.Picasso
 
 class HomeFragment : Fragment() {
 
@@ -36,6 +37,11 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
                 else -> Unit
             }
+        }
+        homeViewModel.photoUrl.observe(viewLifecycleOwner) {
+            Picasso.get()
+                .load(it)
+                .into(binding.homePhoto)
         }
         return binding.root
     }
