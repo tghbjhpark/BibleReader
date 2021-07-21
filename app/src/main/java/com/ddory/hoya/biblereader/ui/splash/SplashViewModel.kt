@@ -2,6 +2,7 @@ package com.ddory.hoya.biblereader.ui.splash
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.ddory.hoya.biblereader.model.repository.Repository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -55,8 +56,13 @@ class SplashViewModel : ViewModel(), LifecycleObserver {
         if (auth.currentUser == null) {
             _navigateTo.postValue(Direction.SIGN_IN)
         } else {
-            _navigateTo.postValue(Direction.HOME)
+            loadCloudData()
+//            _navigateTo.postValue(Direction.HOME)
         }
+    }
+
+    private fun loadCloudData() {
+        Repository.loadCloudData()
     }
 
     enum class Direction {
