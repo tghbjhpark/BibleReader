@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.MaterialTheme
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -23,9 +24,16 @@ class SplashFragment : Fragment() {
         binding = SplashFragmentBinding.inflate(inflater, container, false).apply {
             viewModel = splashViewModel
             lifecycleOwner = viewLifecycleOwner
+        }.apply {
+            this.composeSplashView.setContent {
+                MaterialTheme {
+                    SplashScreen()
+                }
+            }
         }
         lifecycle.addObserver(splashViewModel)
         initObserver()
+
         return binding.root
     }
 

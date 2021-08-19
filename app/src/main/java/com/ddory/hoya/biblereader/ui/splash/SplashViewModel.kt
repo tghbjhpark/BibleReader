@@ -57,7 +57,7 @@ class SplashViewModel : ViewModel(), LifecycleObserver {
             _navigateTo.postValue(Direction.SIGN_IN)
         } else {
             loadCloudData()
-//            _navigateTo.postValue(Direction.HOME)
+            _navigateTo.postValue(Direction.HOME)
         }
     }
 
