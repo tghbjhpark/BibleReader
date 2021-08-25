@@ -45,7 +45,7 @@ class SplashFragment : Fragment() {
                         SplashFragmentDirections.actionSplashFragmentToSignInFragment()
                     )
                 SplashViewModel.Direction.HOME -> {
-                    (activity as MainActivity).enableBottomNavigation(true)
+//                    (activity as MainActivity).enableBottomNavigation(true)
                     findNavController().navigate(
                         SplashFragmentDirections.actionSplashFragmentToHomeFragment()
                     )
