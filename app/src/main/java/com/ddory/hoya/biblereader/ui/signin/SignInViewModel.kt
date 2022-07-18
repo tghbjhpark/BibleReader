@@ -22,17 +22,32 @@ import java.util.concurrent.Executors
 
 class SignInViewModel(fragment: Fragment) : ViewModel(), LifecycleObserver {
 
-    private var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
-    private var signInClient: GoogleSignInClient
+    private lateinit var signInClient: GoogleSignInClient
 
-    private var launcher: ActivityResultLauncher<Unit>
+//    private var launcher: ActivityResultLauncher<Unit>
 
-    private var executor = Executors.newSingleThreadExecutor()
+//    private var executor = Executors.newSingleThreadExecutor()
 
-    init {
-        // Configure Google Sign In
-        val context = fragment.requireContext()
+//    init {
+//        // Configure Google Sign In
+//        val context = fragment.requireContext()
+//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken(context.getString(R.string.default_web_client_id))
+//            .requestEmail()
+//            .build()
+//        signInClient = GoogleSignIn.getClient(context, gso)
+//
+//        // Initialize FirebaseAuth
+//        auth = Firebase.auth
+//
+//        launcher = fragment.registerForActivityResult(SignInContract()) {
+//            firebaseAuthWithGoogle(it)
+//        }
+//    }
+
+    fun init(context: Context) {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(context.getString(R.string.default_web_client_id))
             .requestEmail()
@@ -42,12 +57,14 @@ class SignInViewModel(fragment: Fragment) : ViewModel(), LifecycleObserver {
         // Initialize FirebaseAuth
         auth = Firebase.auth
 
-        launcher = fragment.registerForActivityResult(SignInContract()) {
-            firebaseAuthWithGoogle(it)
-        }
+//        launcher = context.registerForActivityResult(SignInContract()) {
+//            firebaseAuthWithGoogle(it)
+//        }
     }
 
-    fun signIn() {
+    fun getContract() = SignInContract()
+
+    fun signIn(launcher: ActivityResultLauncher<Unit>) {
         launcher.launch(Unit)
     }
 
