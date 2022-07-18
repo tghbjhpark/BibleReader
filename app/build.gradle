@@ -7,8 +7,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdk 31
 
     buildFeatures {
         compose true
@@ -20,8 +19,8 @@ android {
 
     defaultConfig {
         applicationId "com.ddory.hoya.biblereader"
-        minSdkVersion 26
-        targetSdkVersion 30
+        minSdk 26
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
