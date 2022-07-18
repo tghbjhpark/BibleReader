@@ -66,7 +66,7 @@ class SignInViewModel(fragment: Fragment) : ViewModel(), LifecycleObserver {
     }
 
     inner class SignInContract : ActivityResultContract<Unit, GoogleSignInAccount?>() {
-        override fun createIntent(context: Context, input: Unit?): Intent {
+        override fun createIntent(context: Context, input: Unit): Intent {
             return signInClient.signInIntent
         }
 
