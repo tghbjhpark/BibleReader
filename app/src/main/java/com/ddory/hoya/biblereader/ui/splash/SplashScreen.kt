@@ -4,9 +4,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun SplashScreen(splashViewModel: SplashViewModel) {
-    if (!splashViewModel.initialize) {
-        splashViewModel.initialize()
-    }
+fun SplashScreen() {
     Text(text = "SplashScreen")
 }

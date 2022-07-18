@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ddory.hoya.biblereader.ui.main.MainApp
 import com.ddory.hoya.biblereader.ui.splash.SplashScreen
@@ -15,8 +16,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SplashScreen(splashViewModel)
+            SplashActivityScreen()
 //            MainApp()
         }
     }
+}
+
+@Composable
+fun SplashActivityScreen() {
+    SplashScreen()
 }

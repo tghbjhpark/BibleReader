@@ -19,11 +19,15 @@ class SplashViewModel : ViewModel() {
     var initialize by mutableStateOf(false)
         private set
 
+    var navigateTo by mutableStateOf(Direction.UNKNOWN)
+        private set
+
     private lateinit var auth: FirebaseAuth
 
     private lateinit var remoteConfig: FirebaseRemoteConfig
 
     fun initialize() {
+        Log.i("JONGHO", "initialize")
         initRemoteConfig()
         getConfigFetch()
     }
@@ -45,18 +49,19 @@ class SplashViewModel : ViewModel() {
                 } else {
                     Log.i(TAG, "failed")
                 }
+                initialize = true
                 navigateToNext()
             }
     }
 
     private fun navigateToNext() {
-//        auth = Firebase.auth
-//        if (auth.currentUser == null) {
-//            _navigateTo.postValue(Direction.SIGN_IN)
-//        } else {
-//            loadCloudData()
-//            _navigateTo.postValue(Direction.HOME)
-//        }
+        auth = Firebase.auth
+        if (auth.currentUser == null) {
+            navigateTo = Direction.SIGN_IN
+        } else {
+            loadCloudData()
+            navigateTo = Direction.HOME
+        }
     }
 
     private fun loadCloudData() {
