@@ -2,17 +2,27 @@ package com.ddory.hoya.biblereader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.ddory.hoya.biblereader.ui.main.MainFragment
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ddory.hoya.biblereader.ui.main.MainApp
+import com.ddory.hoya.biblereader.ui.splash.SplashScreen
+import com.ddory.hoya.biblereader.ui.splash.SplashViewModel
 
 class MainActivity : AppCompatActivity() {
+    val splashViewModel by viewModels<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
+        setContent {
+            SplashActivityScreen()
+//            MainApp()
         }
     }
+}
+
+@Composable
+fun SplashActivityScreen() {
+    SplashScreen()
 }
