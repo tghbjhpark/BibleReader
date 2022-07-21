@@ -2,29 +2,27 @@ package com.ddory.hoya.biblereader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.ddory.hoya.biblereader.ui.ActivityViewModel
-import kotlinx.android.synthetic.main.main_activity.*
+import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ddory.hoya.biblereader.ui.main.MainApp
+import com.ddory.hoya.biblereader.ui.splash.SplashScreen
+import com.ddory.hoya.biblereader.ui.splash.SplashViewModel
 
 class MainActivity : AppCompatActivity() {
-
-    private val viewModel: ActivityViewModel by viewModels()
+    val splashViewModel by viewModels<SplashViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.action_page_home -> viewModel.navigationEvent(ActivityViewModel.NavEvent.HOME)
-                R.id.action_page_friends -> viewModel.navigationEvent(ActivityViewModel.NavEvent.FRIENDS)
-                R.id.action_page_settings -> viewModel.navigationEvent(ActivityViewModel.NavEvent.SETTINGS)
-            }
-            true
+        setContent {
+            SplashActivityScreen()
+//            MainApp()
         }
     }
+}
 
-    fun enableBottomNavigation(isEnable: Boolean) {
-        bottom_navigation.visibility = if (isEnable) View.VISIBLE else View.GONE
-    }
+@Composable
+fun SplashActivityScreen() {
+    SplashScreen()
 }

@@ -1,6 +1,9 @@
 package com.ddory.hoya.biblereader.ui.splash
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.*
 import com.ddory.hoya.biblereader.model.repository.Repository
 import com.google.firebase.auth.FirebaseAuth
@@ -11,22 +14,21 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import java.util.concurrent.Executors
 
-class SplashViewModel : ViewModel(), LifecycleObserver {
+class SplashViewModel : ViewModel() {
+
+    var initialize by mutableStateOf(false)
+        private set
+
+    var navigateTo by mutableStateOf(Direction.UNKNOWN)
+        private set
 
     private lateinit var auth: FirebaseAuth
 
     private lateinit var remoteConfig: FirebaseRemoteConfig
 
-    private val _navigateTo = MutableLiveData(Direction.UNKNOWN)
-    val navigateTo: LiveData<Direction>
-        get() = _navigateTo
-
-    init {
+    fun initialize() {
+        Log.i("JONGHO", "initialize")
         initRemoteConfig()
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate() {
         getConfigFetch()
     }
 
@@ -47,6 +49,7 @@ class SplashViewModel : ViewModel(), LifecycleObserver {
                 } else {
                     Log.i(TAG, "failed")
                 }
+                initialize = true
                 navigateToNext()
             }
     }
@@ -54,10 +57,10 @@ class SplashViewModel : ViewModel(), LifecycleObserver {
     private fun navigateToNext() {
         auth = Firebase.auth
         if (auth.currentUser == null) {
-            _navigateTo.postValue(Direction.SIGN_IN)
+            navigateTo = Direction.SIGN_IN
         } else {
             loadCloudData()
-//            _navigateTo.postValue(Direction.HOME)
+            navigateTo = Direction.HOME
         }
     }
 
